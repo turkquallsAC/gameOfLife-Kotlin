@@ -1,8 +1,8 @@
 class Board {
     private val cells = mutableListOf<Cell>()
 
-    fun addCell(cell: Cell) {
-        cells.add(cell)
+    fun addCells(vararg cells: Cell) {
+        this.cells.addAll(cells)
     }
 
     fun getCells(): List<Cell> {
@@ -10,7 +10,7 @@ class Board {
     }
 
     fun getNeighbors(cell: Cell): List<Cell> {
-        return emptyList()
+        return cells.filterNot { it == cell }
     }
 
 }
