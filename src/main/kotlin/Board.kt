@@ -9,4 +9,8 @@ class Board {
         return cells
     }
 
+    fun getNeighbors(cell: Cell): List<Cell> {
+        return emptyList()
+    }
+
 }
