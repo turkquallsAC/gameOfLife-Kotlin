@@ -1,10 +1,12 @@
 class Board {
+    private val cells = mutableListOf<Cell>()
+
     fun addCell(cell: Cell) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        cells.add(cell)
     }
 
     fun getCells(): List<Cell> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return cells
     }
 
 }
