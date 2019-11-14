@@ -35,8 +35,9 @@ class Board {
     fun nextRound() {
         val stillAliveCells = aliveCells
             .filter {
-                getNeighbors(it).size == 2
+                getNeighbors(it).size in 2..3
             }
+
         aliveCells.clear()
         aliveCells.addAll(stillAliveCells)
     }

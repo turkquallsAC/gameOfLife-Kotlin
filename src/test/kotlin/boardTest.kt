@@ -63,12 +63,26 @@ class boardTest {
     }
 
     @Test
-    fun singleCellWithTwoNeighborsShouldBeAlive() {
+    fun singleCellWithTwoNeighborsShouldBeAliveNextRound() {
         val board = Board()
         val cell1 = Cell(0, 0)
         val cell2 = Cell(1, 1)
         val cell3 = Cell(1, 0)
         board.addCells(cell1, cell2, cell3)
+
+        board.nextRound()
+
+        assertTrue(board.isAlive(cell2))
+    }
+
+    @Test
+    fun singleCellWithThreeNeighborsShouldBeAliveNextRound() {
+        val board = Board()
+        val cell1 = Cell(0, 1)
+        val cell2 = Cell(1, 1)
+        val cell3 = Cell(1, 0)
+        val cell4 = Cell(0, 0)
+        board.addCells(cell1, cell2, cell3, cell4)
 
         board.nextRound()
 
