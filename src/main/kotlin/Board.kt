@@ -33,13 +33,34 @@ class Board {
     }
 
     fun nextRound() {
-        val stillAliveCells = aliveCells
+        val stillAliveCells = getCellsThatAreStillAlive()
+        val rebornCells = getCellsThatAreReborn(stillAliveCells)
+
+        updateCells(stillAliveCells, rebornCells)
+    }
+
+    private fun getCellsThatAreStillAlive(): List<Cell> {
+        return aliveCells
             .filter {
                 getNeighbors(it).size in 2..3
             }
+    }
 
+    private fun getCellsThatAreReborn(stillAliveCells: List<Cell>): List<Cell> {
+        return stillAliveCells
+            .flatMap {
+                getPotentialNeighbors(it)
+            }
+            .distinct()
+            .filter {
+                !isAlive(it) && getNeighbors(it).size == 3
+            }
+    }
+
+    private fun updateCells(stillAliveCells: List<Cell>, rebornCells: List<Cell>) {
         aliveCells.clear()
         aliveCells.addAll(stillAliveCells)
+        aliveCells.addAll(rebornCells)
     }
 
 }

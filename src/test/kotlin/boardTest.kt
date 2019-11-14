@@ -99,6 +99,19 @@ class boardTest {
         assertFalse(board.isAlive(Cell(1, 1)))
     }
 
+    @Test
+    fun deadSingleCellShouldComeBackToLifeWithThreeNeighbors() {
+        val board = Board()
+        val cell1 = Cell(0, 1)
+        val cell2 = Cell(1, 1)
+        val cell3 = Cell(1, 0)
+        board.addCells(cell1, cell2, cell3)
+
+        board.nextRound()
+
+        assertTrue(board.isAlive(Cell(0, 0)))
+    }
+
     private fun addNeighborhood(board: Board) {
         (-2..2).forEach { x ->
             (-2..2).forEach {y ->
