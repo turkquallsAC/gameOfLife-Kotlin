@@ -29,10 +29,16 @@ class Board {
     }
 
     fun isAlive(cell: Cell): Boolean {
-        return false
+        return aliveCells.contains(cell)
     }
 
     fun nextRound() {
+        val stillAliveCells = aliveCells
+            .filter {
+                getNeighbors(it).size == 2
+            }
+        aliveCells.clear()
+        aliveCells.addAll(stillAliveCells)
     }
 
 }

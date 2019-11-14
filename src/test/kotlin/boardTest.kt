@@ -1,4 +1,5 @@
 import junit.framework.Assert.assertFalse
+import junit.framework.Assert.assertTrue
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.*
 import org.junit.Test
@@ -59,6 +60,19 @@ class boardTest {
         board.nextRound();
 
         assertFalse(board.isAlive(cell));
+    }
+
+    @Test
+    fun singleCellWithTwoNeighborsShouldBeAlive() {
+        val board = Board()
+        val cell1 = Cell(0, 0)
+        val cell2 = Cell(1, 1)
+        val cell3 = Cell(1, 0)
+        board.addCells(cell1, cell2, cell3)
+
+        board.nextRound()
+
+        assertTrue(board.isAlive(cell2))
     }
 
     private fun addNeighborhood(board: Board) {
