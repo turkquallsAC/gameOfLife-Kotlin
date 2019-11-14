@@ -89,6 +89,16 @@ class boardTest {
         assertTrue(board.isAlive(cell2))
     }
 
+    @Test
+    fun singleCellWithOverThreeNeighborsShouldDieNextRound() {
+        val board = Board()
+        addNeighborhood(board)
+
+        board.nextRound()
+
+        assertFalse(board.isAlive(Cell(1, 1)))
+    }
+
     private fun addNeighborhood(board: Board) {
         (-2..2).forEach { x ->
             (-2..2).forEach {y ->
