@@ -1,18 +1,19 @@
 class Board {
-    private val cells = mutableListOf<Cell>()
+    private val aliveCells = mutableListOf<Cell>()
 
     fun addCells(vararg cells: Cell) {
-        this.cells.addAll(cells)
+        this.aliveCells.addAll(cells)
     }
 
     fun getCells(): List<Cell> {
-        return cells
+        return aliveCells
     }
 
     fun getNeighbors(cell: Cell): List<Cell> {
-        val filteredCells = cells.filterNot { it == cell }
         val potentialNeighbors = getPotentialNeighbors(cell)
-        return filteredCells.filter { potentialNeighbors.contains(it) }
+        return aliveCells
+            .filterNot { it == cell }
+            .filter { potentialNeighbors.contains(it) }
     }
 
     private fun getPotentialNeighbors(cell: Cell): MutableList<Cell> {
@@ -25,6 +26,13 @@ class Board {
         }
 
         return potentialNeighbors
+    }
+
+    fun isAlive(cell: Cell): Boolean {
+        return false
+    }
+
+    fun nextRound() {
     }
 
 }
